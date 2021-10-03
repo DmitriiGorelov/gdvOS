@@ -391,9 +391,9 @@ ReadKernel:
     mov word[si+2],size_kernel    ; 100 sectors = ~50kb
     mov word[si+4],0      ; dst: offset=0 (direct 0x10000 cannot be located here in word, overflow)
     mov bx,address_kernel >> 4    
-    ; mov dx,bx
-    ; call print_hex
-    ; call print_new_line
+        ; mov dx,bx
+        ; call print_hex4
+        ; call print_new_line
     mov word[si+6],bx   ; dst: segment=0x1000. 
                           ; Calculation: segment(0x1000)->offset(0)=0x1000*16+offset(0) = 0x10000 
                           ; 0x10000 is a real address that we need
@@ -429,7 +429,8 @@ ReadKernelSuccess:
     ; int 0x10
 
     mov dl,[DriveId]
-
+    
+    [BITS 16]
     jmp address_kernel ;
 
 ReadKernelError:
