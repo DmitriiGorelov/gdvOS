@@ -1,0 +1,1 @@
+%define size_loader 10
